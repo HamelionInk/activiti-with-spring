@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:activiti="http://activiti.org/bpmn"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        targetNamespace="Examples">
+
+    <process id="oneTaskProcess" name="The One Task Process">
+        <startEvent id="start_event"/>
+        <sequenceFlow id="flow1" sourceRef="start_event" targetRef="task_service"/>
+        <serviceTask id="task_service" name="TaskService" activiti:class="com.nikitin.activitiwithspring.service.TaskService"/>
+        <exclusiveGateway id="gateway1" name="exclusiveGateway"/>
+        <sequenceFlow id="flow2" sourceRef="task_service" targetRef="gateway1"/>
+        <userTask id="task_work_A" name="TaskWork" activiti:expression="${taskWorkService.printA()}"/>
+        <userTask id="task_work_B" name="TaskWork" activiti:expression="${taskWorkService.printB()}"/>
+        <sequenceFlow id="flow3" sourceRef="gateway1" targetRef="task_work_A">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${postValue + randomData >= 100}]]></conditionExpression>
+
+        </sequenceFlow>
+        <sequenceFlow id="flow4" sourceRef="gateway1" targetRef="task_work_B">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${postValue + randomData < 100}]]></conditionExpression>
+        </sequenceFlow>
+        <exclusiveGateway id="gateway2" name="exclusiveGateway"/>
+        <sequenceFlow id="flow5" sourceRef="task_work_A" targetRef="gateway2"/>
+        <sequenceFlow id="flow6" sourceRef="task_work_B" targetRef="gateway2"/>
+        <endEvent id="end_event" />
+        <sequenceFlow id="flow7" sourceRef="gateway2" targetRef="end_event"/>
+    </process>
+
+</definitions>
