@@ -1,6 +1,7 @@
 # activiti-with-spring
 
 1. Запустить проект :)
+   Если возникнут проблемы при запуске из за маппера, то нужно сделать mvn clean instal, чтобы в сборке автоматически создался бин mapper'a
 2. Есть 4 Endpoint - 
                      
                      /start?postValue='SomeValue' - В someValue написать значение типа int
