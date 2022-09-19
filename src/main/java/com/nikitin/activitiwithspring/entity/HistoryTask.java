@@ -31,7 +31,6 @@ public class HistoryTask {
     private int sum;
 
     public HistoryTask() {
-
     }
 
     public UUID getId() {
