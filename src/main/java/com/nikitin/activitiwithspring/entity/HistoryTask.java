@@ -22,7 +22,7 @@ public class HistoryTask {
     private String taskDefinitionKey;
 
     @Column(name = "post_value")
-    private String postValue;
+    private int postValue;
 
     @Column(name = "random_data")
     private int randomData;
@@ -58,11 +58,11 @@ public class HistoryTask {
 	this.taskDefinitionKey = taskDefinitionKey;
     }
 
-    public String getPostValue() {
+    public int getPostValue() {
 	return postValue;
     }
 
-    public void setPostValue(String postValue) {
+    public void setPostValue(int postValue) {
 	this.postValue = postValue;
     }
 

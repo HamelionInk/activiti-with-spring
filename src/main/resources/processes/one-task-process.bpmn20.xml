@@ -8,11 +8,11 @@
     <process id="oneTaskProcess" name="The One Task Process">
         <startEvent id="start_event"/>
         <sequenceFlow id="flow1" sourceRef="start_event" targetRef="task_service"/>
-        <serviceTask id="task_service" name="TaskService" activiti:class="com.nikitin.activitiwithspring.service.TaskService"/>
+        <serviceTask id="task_service" name="TaskService" activiti:class="com.nikitin.activitiwithspring.service.TaskServiceImpl"/>
         <exclusiveGateway id="gateway1" name="exclusiveGateway"/>
         <sequenceFlow id="flow2" sourceRef="task_service" targetRef="gateway1"/>
-        <userTask id="task_work_A" name="TaskWork" activiti:expression="${taskWorkService.printA()}"/>
-        <userTask id="task_work_B" name="TaskWork" activiti:expression="${taskWorkService.printB()}"/>
+        <userTask id="task_work_A" name="TaskWork"/>
+        <userTask id="task_work_B" name="TaskWork"/>
         <sequenceFlow id="flow3" sourceRef="gateway1" targetRef="task_work_A">
             <conditionExpression xsi:type="tFormalExpression"><![CDATA[${postValue + randomData >= 100}]]></conditionExpression>
 
